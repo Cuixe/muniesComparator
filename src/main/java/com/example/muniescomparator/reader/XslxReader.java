@@ -1,55 +1,73 @@
 package com.example.muniescomparator.reader;
 
-import com.example.muniescomparator.vo.FileSheet;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import com.example.muniescomparator.vo.Fields;
+import com.example.muniescomparator.vo.XslxFileSheet;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
-public class XslxReader implements FileReader {
+public class XslxReader implements MuniesFileReader {
 
     @Override
-    public FileSheet readFile(String fileLocation) throws IOException {
-        FileInputStream file = new FileInputStream(new File(fileLocation));
-        Workbook workbook = new XSSFWorkbook(file);
+    public XslxFileSheet readFile(InputStream inputStream) throws IOException {
+        Workbook workbook = new XSSFWorkbook(inputStream);
 
-        Iterator<Sheet> iterator =workbook.iterator();
-        while(iterator.hasNext()) {
+        Iterator<Sheet> iterator = workbook.iterator();
+        XslxFileSheet fileSheet = null;
+        while (iterator.hasNext()) {
             Sheet sheet = iterator.next();
-            FileSheet fileSheet = new FileSheet();
+            if (!sheet.getSheetName().equals("GHD-431-Bnt")) {
+                continue;
+            }
+            fileSheet = new XslxFileSheet();
             fileSheet.setName(sheet.getSheetName());
-
-
-            Map<Integer, List<String>> data = new HashMap<>();
-            int i = 0;
             for (Row row : sheet) {
-                Map<Integer, String> headers = null;
-                if (headers == null) {
-                    headers = getHeaders(row);
+                if (fileSheet.getHeaders() == null) {
+                    fileSheet.setHeaders(getHeaders(row));
                 } else {
-                    fileSheet file = new 
-                }
+                    Fields fields = new Fields();
+                    for (Cell cell : row) {
+                        int index = cell.getColumnIndex();
+                        String columName = fileSheet.getHeaders().get(index);
+                        if (columName == null) {
+                            continue;
+                        }
+                        if (columName.equals("FECHA")) {
+                            Date date = cell.getDateCellValue();
+                            LocalDate localDate = date.toInstant()
+                                    .atZone(ZoneId.systemDefault())
+                                    .toLocalDate();
 
+                            fields.setFecha(localDate);
+                        } else if (columName.equals("DEPÓSITOS")) {
+                            if(cell.getCellType() == CellType.NUMERIC) {
+                                fields.setDepositos(cell.getNumericCellValue());
+                            } else {
+                                fields.setDepositos(0D);
+                            }
+                        } else if (columName.equals("RETIROS")) {
+                            if(cell.getCellType() == CellType.NUMERIC) {
+                                fields.setRetiros(cell.getNumericCellValue());
+                            } else {
+                                fields.setRetiros(0D);
+                            }
 
-
-                data.put(i, new ArrayList<String>());
-                for (Cell cell : row) {
-                    switch (cell.getCellType()) {
-
+                        }
+                        cell.setCellType(CellType.STRING);
+                        fields.getRow().add(cell.getStringCellValue());
                     }
+                    fileSheet.getFieldsList().add(fields);
                 }
-                i++;
             }
         }
 
 
-        return null;
+        return fileSheet;
     }
 
     private Map<Integer, String> getHeaders(Row row) {
