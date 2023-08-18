@@ -6,6 +6,8 @@ import com.example.muniescomparator.vo.CsvFileSheet;
 import com.example.muniescomparator.vo.Fields;
 import com.example.muniescomparator.vo.FileSheet;
 import com.example.muniescomparator.vo.XslxFileSheet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -28,10 +29,11 @@ import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 public class UploadController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UploadController.class);
 
     private final String UPLOAD_DIR = "./uploads/";
 
@@ -92,8 +94,11 @@ public class UploadController {
         InputStream xslxInputStream = xslx.getInputStream();
         InputStream csvInputStream = csv.getInputStream();
 
+        LOGGER.info("Processing file: " + StringUtils.cleanPath(csv.getOriginalFilename()));
         CsvReader csvReader = new CsvReader();
         CsvFileSheet csvFileSheet = csvReader.readFile(csvInputStream);
+
+        LOGGER.info("Processing file: " + StringUtils.cleanPath(xslx.getOriginalFilename()));
         XslxReader xslxReader = new XslxReader();
         XslxFileSheet xslxFileSheet = xslxReader.readFile(xslxInputStream);
 

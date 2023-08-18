@@ -4,6 +4,8 @@ import com.example.muniescomparator.vo.Fields;
 import com.example.muniescomparator.vo.XslxFileSheet;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +14,8 @@ import java.time.ZoneId;
 import java.util.*;
 
 public class XslxReader implements MuniesFileReader {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(XslxReader.class);
 
     @Override
     public XslxFileSheet readFile(InputStream inputStream) throws IOException {
@@ -70,6 +74,7 @@ public class XslxReader implements MuniesFileReader {
         headers = new HashMap<>();
         for (Cell cell : row) {
             int index = cell.getColumnIndex();
+            LOGGER.info("Header: " + index + "-" + cell.getStringCellValue());
             headers.put(index, cell.getStringCellValue());
         }
         return headers;

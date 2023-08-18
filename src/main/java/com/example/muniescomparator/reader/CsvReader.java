@@ -2,6 +2,8 @@ package com.example.muniescomparator.reader;
 
 import com.example.muniescomparator.vo.CsvFileSheet;
 import com.example.muniescomparator.vo.Fields;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -9,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CsvReader implements MuniesFileReader {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CsvReader.class);
 
     public CsvFileSheet  readFile(InputStream inputStream) throws IOException {
 
@@ -42,8 +46,6 @@ public class CsvReader implements MuniesFileReader {
                     index++;
                 }
                 fileSheet.getFieldsList().add(fields);
-                // read next line
-
             }
             line = reader.readLine();
         }
@@ -56,7 +58,7 @@ public class CsvReader implements MuniesFileReader {
         int index = 0;
         for (String cell : row) {
             headers.put(index, cell.strip());
-            System.out.println("Header: " + index + "-" + cell);
+            LOGGER.info("Header: " + index + "-" + cell);
             index++;
         }
         return headers;
