@@ -8,16 +8,17 @@
 
 <section class="my-5">
     <div class="container">
+        <a th:href="@{/}">
+            <button type="button" class="btn btn-primary">Regresar</button>
+        </a>
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <table class="table table-striped table-responsive-md">
+                <table class="table">
                     <tbody>
                         <tr>
                             <td><a th:href="@{/download/{name}(name=${equals})}">
                                 <button type="button" class="btn btn-success btn-sm">Iguales</button>
                             </a></td>
-                        </tr>
-                        <tr>
                             <td><a th:href="@{/download/{name}(name=${diff})}">
                                 <button type="button" class="btn btn-success btn-sm">Diferentes</button>
                             </a></td>
