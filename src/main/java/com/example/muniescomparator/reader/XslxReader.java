@@ -21,9 +21,6 @@ public class XslxReader implements MuniesFileReader {
         XslxFileSheet fileSheet = null;
         while (iterator.hasNext()) {
             Sheet sheet = iterator.next();
-            if (!sheet.getSheetName().equals("GHD-431-Bnt")) {
-                continue;
-            }
             fileSheet = new XslxFileSheet();
             fileSheet.setName(sheet.getSheetName());
             for (Row row : sheet) {
@@ -65,8 +62,6 @@ public class XslxReader implements MuniesFileReader {
                 }
             }
         }
-
-
         return fileSheet;
     }
 

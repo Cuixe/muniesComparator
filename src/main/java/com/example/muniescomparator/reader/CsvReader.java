@@ -55,7 +55,7 @@ public class CsvReader implements MuniesFileReader {
         headers = new HashMap<>();
         int index = 0;
         for (String cell : row) {
-            headers.put(index, cell);
+            headers.put(index, cell.strip());
             System.out.println("Header: " + index + "-" + cell);
             index++;
         }
