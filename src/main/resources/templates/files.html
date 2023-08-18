@@ -16,10 +16,18 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td><a th:href="@{/download/{name}(name=${equals})}">
+                            <td>
+                                <p><span th:text="${'Registros que coninciden: ' + equals}"></span></p>
+                            </td>
+                            <td>
+                                <p><span th:text="${'Registros que NO coninciden:' + diff}"></span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/download/{name}(name=${fileEquals})}">
                                 <button type="button" class="btn btn-success btn-sm">Iguales</button>
                             </a></td>
-                            <td><a th:href="@{/download/{name}(name=${diff})}">
+                            <td><a th:href="@{/download/{name}(name=${fileDiff})}">
                                 <button type="button" class="btn btn-success btn-sm">Diferentes</button>
                             </a></td>
                         </tr>

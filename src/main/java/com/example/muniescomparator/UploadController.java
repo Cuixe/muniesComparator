@@ -2,10 +2,7 @@ package com.example.muniescomparator;
 
 import com.example.muniescomparator.reader.CsvReader;
 import com.example.muniescomparator.reader.XslxReader;
-import com.example.muniescomparator.vo.CsvFileSheet;
-import com.example.muniescomparator.vo.Fields;
-import com.example.muniescomparator.vo.FileSheet;
-import com.example.muniescomparator.vo.XslxFileSheet;
+import com.example.muniescomparator.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -48,14 +45,16 @@ public class UploadController {
     public String uploadFile(Model model, @RequestParam("xslx") MultipartFile xslx, @RequestParam("csv") MultipartFile csv) {
         // save the file on the local file system
         try {
-            Map<String,FileSheet> files = getFileSheet(xslx, csv);
-            String equalsFileName = createFile(files.get("equals"), "iguales").replace("/tmp/","");
-            String diffFileName = createFile(files.get("diff"), "diferentes").replace("/tmp/","");
-            model.addAttribute("equals", equalsFileName);
-            model.addAttribute("diff", diffFileName);
+            ComparatorResult result = getFileSheet(xslx, csv);
+            String equalsFileName = createFile(result.getEqualFileSheet(), "iguales").replace("/tmp/","");
+            String diffFileName = createFile(result.getDiffFileSheet(), "diferentes").replace("/tmp/","");
+            model.addAttribute("fileEquals", equalsFileName);
+            model.addAttribute("fileDiff", diffFileName);
+            model.addAttribute("diff", result.getDiff());
+            model.addAttribute("equals", result.getEquals());
             return "files";
         } catch (Exception ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
             return "error";
         }
     }
@@ -90,7 +89,7 @@ public class UploadController {
         return resultFileName;
     }
 
-    private static Map<String,FileSheet> getFileSheet(MultipartFile xslx, MultipartFile csv) throws IOException {
+    private static ComparatorResult getFileSheet(MultipartFile xslx, MultipartFile csv) throws IOException {
         InputStream xslxInputStream = xslx.getInputStream();
         InputStream csvInputStream = csv.getInputStream();
 

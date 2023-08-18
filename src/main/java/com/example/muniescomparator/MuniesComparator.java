@@ -1,9 +1,6 @@
 package com.example.muniescomparator;
 
-import com.example.muniescomparator.vo.CsvFileSheet;
-import com.example.muniescomparator.vo.Fields;
-import com.example.muniescomparator.vo.FileSheet;
-import com.example.muniescomparator.vo.XslxFileSheet;
+import com.example.muniescomparator.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +11,8 @@ public class MuniesComparator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UploadController.class);
 
-    public Map<String,FileSheet> compare(XslxFileSheet xslxFileSheet, CsvFileSheet csvFileSheet) {
+    public ComparatorResult compare(XslxFileSheet xslxFileSheet, CsvFileSheet csvFileSheet) {
+        ComparatorResult result = new ComparatorResult();
         FileSheet equalsFileSheet = new FileSheet();
         FileSheet diffFileSheet = new FileSheet();
         int equals = 0;
@@ -41,6 +39,10 @@ public class MuniesComparator {
         diffFileSheet.setHeaders(xslxFileSheet.getHeaders());
         LOGGER.info("Equals records: " + equals);
         LOGGER.info("Diff records: " + diff);
-        return files;
+        result.setDiff(diff);
+        result.setEquals(equals);
+        result.setDiffFileSheet(diffFileSheet);
+        result.setEqualFileSheet(equalsFileSheet);
+        return result;
     }
 }
