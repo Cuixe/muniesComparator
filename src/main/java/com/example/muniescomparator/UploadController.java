@@ -11,8 +11,10 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,8 +24,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -39,55 +43,62 @@ public class UploadController {
     private final Path root = Paths.get("/tmp");
 
     @PostMapping("/upload")
-    public ResponseEntity<Resource> uploadFile(@RequestParam("xslx") MultipartFile xslx, @RequestParam("csv") MultipartFile csv, RedirectAttributes attributes) {
-
-        // normalize the file path
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(xslx.getOriginalFilename()));
-
+    public String uploadFile(Model model, @RequestParam("xslx") MultipartFile xslx, @RequestParam("csv") MultipartFile csv) {
         // save the file on the local file system
         try {
-            InputStream xslxInputStream = xslx.getInputStream();
-            InputStream csvInputStream = csv.getInputStream();
+            Map<String,FileSheet> files = getFileSheet(xslx, csv);
+            String equalsFileName = createFile(files.get("equals"), "iguales").replace("/tmp/","");
+            String diffFileName = createFile(files.get("diff"), "diferentes").replace("/tmp/","");
+            model.addAttribute("equals", equalsFileName);
+            model.addAttribute("diff", diffFileName);
+            return "files";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "error";
+        }
+    }
 
-            CsvReader csvReader = new CsvReader();
-            CsvFileSheet csvFileSheet = csvReader.readFile(csvInputStream);
-            XslxReader xslxReader = new XslxReader();
-            XslxFileSheet xslxFileSheet = xslxReader.readFile(xslxInputStream);
-
-            MuniesComparator comparator = new MuniesComparator();
-            FileSheet fileSheet = comparator.compare(xslxFileSheet, csvFileSheet);
-
-            String resultFileName = "/tmp/restult" + System.currentTimeMillis() + ".csv";
-
-            FileWriter fileWriter = new FileWriter(resultFileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            String header = String.join(",",fileSheet.getHeaders().values());
-            bufferedWriter.write(header);
-            bufferedWriter.newLine();
-            for(Fields fields : fileSheet.getFieldsList()) {
-                String row = String.join(",",fields.getRow());
-                bufferedWriter.write(row);
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.close();
-            fileWriter.close();
-
-            Path file = root.resolve(resultFileName);
-            Resource resource = new UrlResource(file.toUri());
-
-            if (resource.exists() || resource.isReadable()) {
-
-                return ResponseEntity.ok()
-                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
-            } else {
-                throw new RuntimeException("Could not read the file!");
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    @GetMapping("/download/{fileName}")
+    public ResponseEntity<Resource> download(@PathVariable("fileName") String fileName) throws MalformedURLException {
+        Path file = root.resolve("/tmp/"+fileName);
+        Resource resource = new UrlResource(file.toUri());
+        if (resource.exists() || resource.isReadable()) {
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
+        } else {
             throw new RuntimeException("Could not read the file!");
         }
+    }
 
+    private static String createFile(FileSheet fileSheet, String name) throws IOException {
+        String resultFileName = "/tmp/" + name  + System.currentTimeMillis() + ".csv";
+
+        FileWriter fileWriter = new FileWriter(resultFileName);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String header = String.join(",", fileSheet.getHeaders().values());
+        bufferedWriter.write(header);
+        bufferedWriter.newLine();
+        for(Fields fields : fileSheet.getFieldsList()) {
+            String row = String.join(",",fields.getRow());
+            bufferedWriter.write(row);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+        return resultFileName;
+    }
+
+    private static Map<String,FileSheet> getFileSheet(MultipartFile xslx, MultipartFile csv) throws IOException {
+        InputStream xslxInputStream = xslx.getInputStream();
+        InputStream csvInputStream = csv.getInputStream();
+
+        CsvReader csvReader = new CsvReader();
+        CsvFileSheet csvFileSheet = csvReader.readFile(csvInputStream);
+        XslxReader xslxReader = new XslxReader();
+        XslxFileSheet xslxFileSheet = xslxReader.readFile(xslxInputStream);
+
+        MuniesComparator comparator = new MuniesComparator();
+        return comparator.compare(xslxFileSheet, csvFileSheet);
     }
 
 }

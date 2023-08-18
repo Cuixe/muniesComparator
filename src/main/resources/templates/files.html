@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot & Thymeleaf File Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <table class="table table-striped table-responsive-md">
+                    <tbody>
+                        <tr>
+                            <td><a th:href="@{/download/{name}(name=${equals})}">
+                                <button type="button" class="btn btn-success btn-sm">Iguales</button>
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/download/{name}(name=${diff})}">
+                                <button type="button" class="btn btn-success btn-sm">Diferentes</button>
+                            </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
