@@ -31,13 +31,13 @@ public class CsvReader implements MuniesFileReader {
                 int index = 0;
                 for (String cell : row) {
                     String columName = fileSheet.getHeaders().get(index);;
-                    if (columName.equals("JRNL_ACCOUNTING_DATE")) {
+                    if (columName.contains("JRNL_ACCOUNTING_DATE")) {
                         fields.setFecha(LocalDate.parse(cell.substring(0,10)));
-                    } else if (columName.equals("ENT_JRNL_LINE_DR")) {
+                    } else if (columName.contains("ENT_JRNL_LINE_DR")) {
                         if (!cell.isEmpty()) {
                             fields.setDepositos(Double.parseDouble(cell));
                         }
-                    } else if (columName.equals("ENT_JRNL_LINE_CR")) {
+                    } else if (columName.contains("ENT_JRNL_LINE_CR")) {
                         if (!cell.isEmpty()) {
                             fields.setRetiros(Double.parseDouble(cell));
                         }
