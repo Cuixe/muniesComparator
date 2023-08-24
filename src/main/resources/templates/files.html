@@ -8,29 +8,53 @@
 
 <section class="my-5">
     <div class="container">
-        <a th:href="@{/}">
+        <a th:href="@{/compare}">
             <button type="button" class="btn btn-primary">Regresar</button>
         </a>
         <div class="row">
             <div class="col-md-8 mx-auto">
+                <p class="h2"> Fecha y movimientos iguales </p>
                 <table class="table">
                     <tbody>
                         <tr>
                             <td>
-                                <p><span th:text="${'Registros que coninciden: ' + equals}"></span></p>
+                                <p><span th:text="${'Registros que coninciden: ' + equals.getEquals()}"></span></p>
                             </td>
                             <td>
-                                <p><span th:text="${'Registros que NO coninciden:' + diff}"></span></p>
+                                <p><span th:text="${'Registros que NO coninciden:' + equals.getDiff()}"></span></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/download/{name}(name=${fileEquals})}">
+                            <td><a th:href="@{/download/{name}(name=${equals.getFileNameEquals()})}">
                                 <button type="button" class="btn btn-success btn-sm">Iguales</button>
                             </a></td>
-                            <td><a th:href="@{/download/{name}(name=${fileDiff})}">
+                            <td><a th:href="@{/download/{name}(name=${equals.getFileNameDiff()})}">
                                 <button type="button" class="btn btn-success btn-sm">Diferentes</button>
                             </a></td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8 mx-auto">
+                <p class="h2"> Movimientos iguales </p>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <p><span th:text="${'Registros que coninciden: ' + quantity.getEquals()}"></span></p>
+                        </td>
+                        <td>
+                            <p><span th:text="${'Registros que NO coninciden:' + quantity.getDiff()}"></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a th:href="@{/download/{name}(name=${quantity.getFileNameEquals()})}">
+                            <button type="button" class="btn btn-success btn-sm">Iguales</button>
+                        </a></td>
+                        <td><a th:href="@{/download/{name}(name=${quantity.getFileNameDiff()})}">
+                            <button type="button" class="btn btn-success btn-sm">Diferentes</button>
+                        </a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-public class Fields {
+public class Record {
     private int index;
     private LocalDate fecha;
     private Double depositos;
@@ -19,8 +19,8 @@ public class Fields {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Fields fields = (Fields) o;
-        return Objects.equals(fecha, fields.fecha) && Objects.equals(depositos, fields.depositos) && Objects.equals(retiros, fields.retiros);
+        Record record = (Record) o;
+        return Objects.equals(fecha, record.fecha) && Objects.equals(depositos, record.depositos) && Objects.equals(retiros, record.retiros);
     }
 
     @Override
