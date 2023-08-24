@@ -1,7 +1,7 @@
 package com.example.muniescomparator.reader;
 
-import com.example.muniescomparator.vo.Fields;
-import com.example.muniescomparator.vo.XslxFileSheet;
+import com.example.muniescomparator.vo.Record;
+import com.example.muniescomparator.vo.XslxFileRecords;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
@@ -18,21 +18,21 @@ public class XslxReader implements MuniesFileReader {
     private static final Logger LOGGER = LoggerFactory.getLogger(XslxReader.class);
 
     @Override
-    public XslxFileSheet readFile(InputStream inputStream) throws IOException {
+    public XslxFileRecords readFile(InputStream inputStream) throws IOException {
         Workbook workbook = new XSSFWorkbook(inputStream);
 
         Iterator<Sheet> iterator = workbook.iterator();
-        XslxFileSheet fileSheet = null;
+        XslxFileRecords fileSheet = null;
         while (iterator.hasNext()) {
             Sheet sheet = iterator.next();
-            fileSheet = new XslxFileSheet();
+            fileSheet = new XslxFileRecords();
             fileSheet.setName(sheet.getSheetName());
             for (Row row : sheet) {
                 if (fileSheet.getHeaders() == null) {
                     fileSheet.setHeaders(getHeaders(row));
                 } else {
-                    Fields fields = new Fields();
-                    fields.setIndex(row.getRowNum());
+                    Record record = new Record();
+                    record.setIndex(row.getRowNum());
                     for (Cell cell : row) {
                         int index = cell.getColumnIndex();
                         String columName = fileSheet.getHeaders().get(index);
@@ -45,25 +45,25 @@ public class XslxReader implements MuniesFileReader {
                                     .atZone(ZoneId.systemDefault())
                                     .toLocalDate();
 
-                            fields.setFecha(localDate);
+                            record.setFecha(localDate);
                         } else if (columName.equals("DEPÓSITOS")) {
                             if(cell.getCellType() == CellType.NUMERIC) {
-                                fields.setDepositos(cell.getNumericCellValue());
+                                record.setDepositos(cell.getNumericCellValue());
                             } else {
-                                fields.setDepositos(0D);
+                                record.setDepositos(0D);
                             }
                         } else if (columName.equals("RETIROS")) {
                             if(cell.getCellType() == CellType.NUMERIC) {
-                                fields.setRetiros(cell.getNumericCellValue());
+                                record.setRetiros(cell.getNumericCellValue());
                             } else {
-                                fields.setRetiros(0D);
+                                record.setRetiros(0D);
                             }
 
                         }
                         cell.setCellType(CellType.STRING);
-                        fields.getRow().add(cell.getStringCellValue());
+                        record.getRow().add(cell.getStringCellValue());
                     }
-                    fileSheet.getFieldsList().add(fields);
+                    fileSheet.getRecordList().add(record);
                 }
             }
         }
