@@ -21,16 +21,17 @@ public class CsvReader implements MuniesFileReader {
         String line = reader.readLine();
         CsvFileSheet fileSheet = new CsvFileSheet();
         fileSheet.setName("");
-
+        int rowNumber = 0;
         while (line != null) {
             String[] row = line.split(",");
             if (fileSheet.getHeaders() == null) {
                 fileSheet.setHeaders(getHeaders(row));
             } else {
                 Fields fields = new Fields();
-                int index = 0;
+                fields.setIndex(rowNumber);
+                int column = 0;
                 for (String cell : row) {
-                    String columName = fileSheet.getHeaders().get(index);;
+                    String columName = fileSheet.getHeaders().get(column);
                     if (columName.contains("JRNL_ACCOUNTING_DATE")) {
                         fields.setFecha(LocalDate.parse(cell.substring(0,10)));
                     } else if (columName.contains("ENT_JRNL_LINE_DR")) {
@@ -43,11 +44,12 @@ public class CsvReader implements MuniesFileReader {
                         }
                     }
                     fields.getRow().add(cell);
-                    index++;
+                    column++;
                 }
                 fileSheet.getFieldsList().add(fields);
             }
             line = reader.readLine();
+            rowNumber++;
         }
         return fileSheet;
     }

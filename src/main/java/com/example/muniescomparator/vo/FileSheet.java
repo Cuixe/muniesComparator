@@ -16,4 +16,8 @@ public class FileSheet {
 
     public List<Fields> fieldsList = new ArrayList<>();
 
+    public List<Fields> getClone(){
+        return this.fieldsList.subList(0,this.fieldsList.size());
+    }
+
 }

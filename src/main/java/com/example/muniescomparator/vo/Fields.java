@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Data
 public class Fields {
-
+    private int index;
     private LocalDate fecha;
     private Double depositos;
     private Double retiros;

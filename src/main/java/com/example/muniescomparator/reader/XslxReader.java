@@ -32,6 +32,7 @@ public class XslxReader implements MuniesFileReader {
                     fileSheet.setHeaders(getHeaders(row));
                 } else {
                     Fields fields = new Fields();
+                    fields.setIndex(row.getRowNum());
                     for (Cell cell : row) {
                         int index = cell.getColumnIndex();
                         String columName = fileSheet.getHeaders().get(index);

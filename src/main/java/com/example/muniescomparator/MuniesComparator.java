@@ -4,7 +4,9 @@ import com.example.muniescomparator.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MuniesComparator {
@@ -17,11 +19,13 @@ public class MuniesComparator {
         FileSheet diffFileSheet = new FileSheet();
         int equals = 0;
         int diff = 0;
+        List<Integer> processedRows = new ArrayList<>();
         for(Fields xslxFields : xslxFileSheet.getFieldsList()) {
             boolean found = false;
             for(Fields csvfields : csvFileSheet.getFieldsList()) {
-                if (xslxFields.equals(csvfields)) {
+                if (xslxFields.equals(csvfields) && !processedRows.contains(xslxFields.getIndex())) {
                     equalsFileSheet.fieldsList.add(xslxFields);
+                    processedRows.add(xslxFields.getIndex());
                     found = true;
                     equals++;
                 }
@@ -31,10 +35,6 @@ public class MuniesComparator {
                 diff++;
             }
         }
-
-        Map<String, FileSheet> files = new HashMap<>();
-        files.put("equals", equalsFileSheet);
-        files.put("diff", diffFileSheet);
         equalsFileSheet.setHeaders(xslxFileSheet.getHeaders());
         diffFileSheet.setHeaders(xslxFileSheet.getHeaders());
         LOGGER.info("Equals records: " + equals);
