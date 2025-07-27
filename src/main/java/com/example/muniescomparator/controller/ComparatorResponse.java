@@ -16,4 +16,5 @@ public class ComparatorResponse {
         this.fileNameEquals = fileNameEquals;
         this.fileNameDiff = fileNameDiff;
     }
+
 }

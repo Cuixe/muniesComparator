@@ -1,0 +1,55 @@
+package com.example.muniescomparator.controller;
+
+import com.example.muniescomparator.format.FileFormat;
+import com.example.muniescomparator.format.RechazadasConverter;
+import com.example.muniescomparator.format.S274Formater;
+import com.example.muniescomparator.format.UVRAAceptadasFormatter;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+@Controller
+@RequestMapping("/formater")
+public class FormateadorController {
+
+    @GetMapping("/")
+    public String formatoNuevo(Model model) {
+        model.addAttribute("formats", FileFormat.values());
+        return "formatoNuevo";
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<Resource> uploadFile(Model model, @RequestParam("file") MultipartFile file, @RequestParam String format,
+                                               @RequestParam String fileName, @RequestParam String positions) throws Exception {
+
+        FileFormat fileFormat = FileFormat.valueOf(format.toUpperCase());
+        InputStream stream = file.getInputStream();
+        fileName = fileName.substring(0, fileName.lastIndexOf('.'));
+        String output =fileName;
+        String convertedFile = null;
+        switch (fileFormat) {
+            case UVRA_ACEPTADAS:
+                convertedFile = new UVRAAceptadasFormatter().format(stream, output);
+                break;
+            case UVRA_RECHAZADAS:
+                convertedFile = new RechazadasConverter().format(stream, output);
+                break;
+            case S274:
+                convertedFile = new S274Formater().format(stream, output);
+        }
+        Path path = Paths.get("/tmp/"+ convertedFile );
+        Resource resource = new InputStreamResource(Files.newInputStream(path));
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=\"" + path.getFileName() + "\"")
+                .body(resource);
+    }
+}

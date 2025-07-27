@@ -14,9 +14,14 @@
                 <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
                 <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Archivo xslx</label>
-                        <input type="file" name="xslx" class="form-control-file">
-                        <label>Archivo csv</label>
+                        <select name="opcion" class="form-control">
+                            <option>
+                            <option value="1">UVRA_ACEPTADAS</option>
+                            <option value="2">UVRA_RECHAZADAS</option>
+                            <option value="3">S270</option>
+                            </option>
+                        </select>
+                        <label>Archivo</label>
                         <input type="file" name="csv" class="form-control-file">
                     </div>
                     <button type="submit" class="btn btn-primary">Comparar archivos</button>
