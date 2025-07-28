@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Muñes comparator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const select = document.getElementById('format');
+        const button = document.getElementById('submit');
+        const input = document.getElementById('file');
+        button.addEventListener('click', function(event) {
+            let format = select.value;
+            const file = input.files[0];
+            const formData = new FormData();
+            const positions = document.getElementById('posiciones').value;
+            formData.append('file', file);
+            formData.append('fileName', file.name);
+            formData.append('format', format);
+            formData.append('positions', positions);
+
+            fetch('/formater/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error en la respuesta');
+                // Extrae el header aquí
+                const disposition = response.headers.get('Content-Disposition');
+                let fileName = 'archivo_descargado';
+                if (disposition && disposition.indexOf('filename=') !== -1) {
+                    fileName = disposition.split('filename=')[1].replace(/"/g, '');
+                }
+                return response.blob().then(blob => ({ blob, fileName }));
+            })
+            .then(({ blob, fileName }) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => alert('Error al subir o descargar el archivo'));
+        });
+
+
+        select.addEventListener('change', function() {
+            const selectedValue = this.value;
+            if (selectedValue === 'POSITIONS') {
+                document.getElementById('pattern').style.display = 'block';
+            } else {
+                document.getElementById('pattern').style.display = 'none'
+            }
+        });
+
+    });
+</script>
+<body>
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2>Carga de archivos</h2>
+                <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+                    <div class="form-group">
+                        <label> Formato</label>
+                        <select id="format" class="form-control">
+                            <option th:each="format : ${formats}"
+                                    th:value="${format}"
+                                    th:text="${format}">
+                            </option>
+                        </select>
+                        <label>Archivo</label>
+                        <input type="file" id="file" name="csv" class="form-control-file">
+                        <div id="pattern" class="custom-file" style="display: none">
+                            <label>Ingresa las posicicones separadas por comas</label>
+                            <input type="text" id="posiciones" name="posiciones" class="form-control-file">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submit">Subir archivo</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
