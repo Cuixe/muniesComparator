@@ -2,7 +2,6 @@ package con.cuixe.munies.tools.comparator;
 
 import con.cuixe.munies.tools.controller.ComparatorController;
 import con.cuixe.munies.tools.vo.*;
-import com.example.muniescomparator.vo.*;
 import con.cuixe.munies.tools.vo.Record;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

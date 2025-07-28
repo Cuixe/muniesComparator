@@ -10,10 +10,10 @@ class AceptedFormatterTest {
     @Test
     public void testFormat() {
         AceptedFormatter formatter = new AceptedFormatter( (outputFile, rows) -> {
-            assertTrue(rows.size() > 19);
+            assertEquals(19, rows.size());
             return "";
         });
-        String inputFile = "formater/aceptadas.txt";
+        String inputFile = "src/test/resources/formater/acepted.txt";
 
         try {
             formatter.format(inputFile, "");
