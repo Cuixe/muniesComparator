@@ -1,12 +1,16 @@
 package com.example.muniescomparator.format;
 
+import com.example.muniescomparator.file.FileWriter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.util.*;
 
 @Slf4j
-public class UVRAAceptadasFormatter extends AbstractLinesFormater{
+public class AceptedFormatter extends AbstractLinesFormater{
+
+    public AceptedFormatter(FileWriter fileWriter) {
+        super(fileWriter);
+    }
 
     @Override
     public FileFormat getFormat() {
@@ -15,12 +19,12 @@ public class UVRAAceptadasFormatter extends AbstractLinesFormater{
 
     private List<Integer> sizes = Arrays.asList(8,6,7,5,6,13,4,7,12,5,17,23,20);
 
-    public String convert(List<String> lines, String output) throws IOException {
+    public Map<Integer, List<String>> getFormatedLines(List<String> input) throws Exception {
         log.debug("Converting file ");
         boolean beginBlock = false;
         Map<Integer, List<String>> rows = new HashMap<>();
         int index = 1;
-        for(String line : lines) {
+        for(String line : input) {
             if (line.startsWith(" --") ) {
                 beginBlock = true;
             } else if (line.startsWith("X") && beginBlock) {
@@ -31,8 +35,7 @@ public class UVRAAceptadasFormatter extends AbstractLinesFormater{
             }
             index++;
         }
-
-        return SimpleFileWriterUtils.writeCsv(output, rows);
+        return rows;
     }
 
     private List<String> getRow(String line) {

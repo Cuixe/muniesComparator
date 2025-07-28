@@ -1,22 +1,27 @@
 package com.example.muniescomparator.format;
 
-import java.io.IOException;
+import com.example.muniescomparator.file.FileWriter;
+
 import java.util.*;
 
-public class RechazadasConverter extends AbstractLinesFormater {
+public class RejectedFormater extends AbstractLinesFormater {
 
     private List<Integer> sizes = Arrays.asList(8,6,8,5,6,13,4,7,6,6,18,21,20,4);
+
+    public RejectedFormater(FileWriter fileWriter) {
+        super(fileWriter);
+    }
 
     @Override
     public FileFormat getFormat() {
         return FileFormat.UVRA_RECHAZADAS;
     }
 
-    public String convert(List<String> lines, String output) throws IOException {
+    public Map<Integer, List<String>> getFormatedLines(List<String> input) throws Exception {
         Map<Integer, List<String>> rows = new HashMap<>();
         boolean beginBlock = false;
         List<String> row = null;
-        for(String line : lines) {
+        for(String line : input) {
             if (line.startsWith("  --") ) {
                 beginBlock = true;
             } else if (line.startsWith("X") && beginBlock) {
@@ -25,8 +30,7 @@ public class RechazadasConverter extends AbstractLinesFormater {
                 row = getRow(line, row, rows);
             }
         }
-        FileWriter writer = FileWriter.CSVWriter;
-        return writer.write(output, rows);
+        return rows;
     }
 
     private List<String> getRow(String line, List<String> row, Map<Integer, List<String>> rows) {

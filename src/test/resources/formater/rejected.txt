@@ -1,0 +1,187 @@
+X
+ HAAF - TITULO ORIGINAL: (S274)S274/LIST/P121/1000/R001/250224/0001426/002RECHAZADAS ON PACK
+
+X
+ S274-P121-MOVSRECH-001               CBM Banco S.A.      -SISTEMAS DE ENTREGA                                           HOJA:   1
+ FECHA-PROCESO: 24/02/2025                         PAGOS POR MEDIOS MAGNETICOS
+ HORA-PROCESO : 12:05:05                        342 TARJETAS DE CREDITO
+ FECHA-VERSION: 15/02/2014                     OPERACIONES RECHAZADAS EL 24/02/2025   CAJA: 34     MONEDA: M.N.
+
+  NUMERO  HORA   AUTORI      FECHA                   NUM.   <-----DATOS DE CUENTA------>  <---------------IMPORTE---------------> TIP
+  AUTORI  APLI   DESTIN ORIG APLI. NO. CTE/SIST SEC  PAGO   TIPO  SUC.     C U E N T A         C A R G O           A B O N O      MOV
+  ------  -----  ------ ---- ----- ------------ --- ------  ----  ----  ----------------  ------------------- ------------------- ---
+       2  02:36       0 SIST 24/02        15130   1      2  CHQS  7019            120048     1,526,642,412.02                     DET
+                                   REFER.CTE:0000000001          CAUSA: FONDOS INSUFICIENTES
+     255  02:36       0 SIST 24/02        15130   1    412  CHQS  7006           6603995             1,189.47                     DET
+                                   REFER.CTE:0001007171          CAUSA: FONDOS INSUFICIENTES
+     256  02:36       0 SIST 24/02        15130   1    413  CHQS  7006           6603995               600.88                     DET
+                                   REFER.CTE:0001007171          CAUSA: FONDOS INSUFICIENTES
+     257  02:36       0 SIST 24/02        15130   1    414  CHQS  7006           6603995                96.13                     DET
+                                   REFER.CTE:0001007171          CAUSA: FONDOS INSUFICIENTES
+    1034  02:36       0 SIST 24/02        15130   1   1790  CHQS   694           8115164               662.19                     DET
+                                   REFER.CTE:0001038074          CAUSA: FONDOS INSUFICIENTES
+    1035  02:36       0 SIST 24/02        15130   1   1791  CHQS   694           8115164               105.94                     DET
+                                   REFER.CTE:0001038074          CAUSA: FONDOS INSUFICIENTES
+    1036  02:36       0 SIST 24/02        15130   1   1793  CHQS   694           8115164                56.98                     DET
+                                   REFER.CTE:0001038074          CAUSA: FONDOS INSUFICIENTES
+    3274  02:37       0 SIST 24/02        15130   1   5493  CHQS    23            736006               379.80                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3275  02:37       0 SIST 24/02        15130   1   5494  CHQS    23            736006                60.76                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3276  02:37       0 SIST 24/02        15130   1   5495  CHQS    23            736006               178.21                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3277  02:37       0 SIST 24/02        15130   1   5496  CHQS    23            736006                28.51                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3278  02:37       0 SIST 24/02        15130   1   5497  CHQS    23            736006               541.19                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3279  02:37       0 SIST 24/02        15130   1   5498  CHQS    23            736006                86.59                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3280  02:37       0 SIST 24/02        15130   1   5499  CHQS    23            735018                                16,924.00 DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3281  02:37       0 SIST 24/02        15130   1   5500  CHQS    23            735018               200.94                     DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3282  02:37       0 SIST 24/02        15130   1   5501  CHQS    23            735018                32.16                     DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3283  02:37       0 SIST 24/02        15130   1   5502  CHQS    23            735018                73.82                     DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3284  02:37       0 SIST 24/02        15130   1   5503  CHQS    23            735018                11.81                     DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+    3992  02:37       0 SIST 24/02        15130   1   6621  CHQS   694           8120419                86.50                     DET
+                                   REFER.CTE:0001151943          CAUSA: FONDOS INSUFICIENTES
+    4086  02:37       0 SIST 24/02        15130   1   6741  CHQS  4116              6925             4,849.31                     DET
+                                   REFER.CTE:0001154944          CAUSA: FONDOS INSUFICIENTES
+    4087  02:37       0 SIST 24/02        15130   1   6742  CHQS  4116              6925               775.91                     DET
+                                   REFER.CTE:0001154944          CAUSA: FONDOS INSUFICIENTES
+    4088  02:37       0 SIST 24/02        15130   1   6743  CHQS  4116              6925           185,062.81                     DET
+                                   REFER.CTE:0001154944          CAUSA: FONDOS INSUFICIENTES
+    4089  02:37       0 SIST 24/02        15130   1   6744  CHQS  4116              6925            29,610.02                     DET
+                                   REFER.CTE:0001154944          CAUSA: FONDOS INSUFICIENTES
+    4090  02:37       0 SIST 24/02        15130   1   6745  CHQS  4116              6925               459.98                     DET
+                                   REFER.CTE:0001154944          CAUSA: FONDOS INSUFICIENTES
+    4199  02:37       0 SIST 24/02        15130   1   6920  CHQS    23           4315188               717.94                     DET
+                                   REFER.CTE:0001158722          CAUSA: FONDOS INSUFICIENTES
+   18798  02:38       0 SIST 24/02        15130   1  52359  CHQS  7016           3405952             1,452.75                     DET
+                                   REFER.CTE:0001213531          CAUSA: FONDOS INSUFICIENTES
+X
+ S274-P121-MOVSRECH-001               CBM Banco S.A.      -SISTEMAS DE ENTREGA                                           HOJA:   2
+ FECHA-PROCESO: 24/02/2025                         PAGOS POR MEDIOS MAGNETICOS
+ HORA-PROCESO : 12:05:05                        342 TARJETAS DE CREDITO
+ FECHA-VERSION: 15/02/2014                     OPERACIONES RECHAZADAS EL 24/02/2025   CAJA: 34     MONEDA: M.N.
+
+  NUMERO  HORA   AUTORI      FECHA                   NUM.   <-----DATOS DE CUENTA------>  <---------------IMPORTE---------------> TIP
+  AUTORI  APLI   DESTIN ORIG APLI. NO. CTE/SIST SEC  PAGO   TIPO  SUC.     C U E N T A         C A R G O           A B O N O      MOV
+  ------  -----  ------ ---- ----- ------------ --- ------  ----  ----  ----------------  ------------------- ------------------- ---
+   18799  02:38       0 SIST 24/02        15130   1  52362  CHQS  7016           3405952               123.63                     DET
+                                   REFER.CTE:0001213531          CAUSA: FONDOS INSUFICIENTES
+   18842  02:38       0 SIST 24/02        15130   1  52441  CHQS  7016           3985916                 2.34                     DET
+                                   REFER.CTE:0001215362          CAUSA: FONDOS INSUFICIENTES
+   26721  02:39       0 SIST 24/02        15130   1  76354  CHQS  7017            892273               579.68                     DET
+                                   REFER.CTE:0001245309          CAUSA: FONDOS INSUFICIENTES
+   28968  02:39       0 SIST 24/02        15130   1  83242  CHQS  7017            628088                 3.75                     DET
+                                   REFER.CTE:0001251995          CAUSA: FONDOS INSUFICIENTES
+   28969  02:39       0 SIST 24/02        15130   1  83247  CHQS  7017            628088               197.90                     DET
+                                   REFER.CTE:0001251996          CAUSA: FONDOS INSUFICIENTES
+   29113  02:39       0 SIST 24/02        15130   1  83468  CHQS   870            562574                42.15                     DET
+                                   REFER.CTE:0001280289          CAUSA: FONDOS INSUFICIENTES
+   29114  02:39       0 SIST 24/02        15130   1  83471  CHQS   870            562574                 1.15                     DET
+                                   REFER.CTE:0001280302          CAUSA: FONDOS INSUFICIENTES
+   29258  02:39       0 SIST 24/02        15130   1  83728  CHQS  7017            684204                85.24                     DET
+                                   REFER.CTE:0001288698          CAUSA: FONDOS INSUFICIENTES
+   29259  02:39       0 SIST 24/02        15130   1  83729  CHQS  7017            684204               572.67                     DET
+                                   REFER.CTE:0001288698          CAUSA: FONDOS INSUFICIENTES
+   29431  02:39       0 SIST 24/02        15130   1  83984  CHQS  7018           4538138                               111,908.50 DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29432  02:39       0 SIST 24/02        15130   1  83985  CHQS  7018           4538138               856.45                     DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29433  02:39       0 SIST 24/02        15130   1  83986  CHQS  7018           4538138               137.05                     DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29434  02:39       0 SIST 24/02        15130   1  83987  CHQS  7018           4538138               627.99                     DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29435  02:39       0 SIST 24/02        15130   1  83988  CHQS  7018           4538138               100.47                     DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29436  02:39       0 SIST 24/02        15130   1  83989  CHQS  7018           4538138               239.71                     DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29437  02:39       0 SIST 24/02        15130   1  83990  CHQS  7018           4538138                38.35                     DET
+                                   REFER.CTE:0001293945          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29514  02:39       0 SIST 24/02        15130   1  84142  CHQS  7018           3630189               269.87                     DET
+                                   REFER.CTE:0001296350          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29515  02:39       0 SIST 24/02        15130   1  84143  CHQS  7018           3630189               100.46                     DET
+                                   REFER.CTE:0001296350          CAUSA: VERIFIQUE, EL CONTRATO EST� CANCELADO
+   29695  02:39       0 SIST 24/02        15130   1  84513  CHQS    23           5523078                                16,156.00 DET
+                                   REFER.CTE:0001300244          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   29699  02:39       0 SIST 24/02        15130   1  84523  CHQS    23           5523078                                23,961.00 DET
+                                   REFER.CTE:0001300285          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   29704  02:39       0 SIST 24/02        15130   1  84528  CHQS    23           5523078                                76,168.00 DET
+                                   REFER.CTE:0001300286          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   31948  02:40       0 SIST 24/02        15130   1  88769  CHQS   807           7999257               321.83                     DET
+                                   REFER.CTE:0002308906          CAUSA: FONDOS INSUFICIENTES
+   31949  02:40       0 SIST 24/02        15130   1  88770  CHQS   807           7999257               767.95                     DET
+                                   REFER.CTE:0002308906          CAUSA: FONDOS INSUFICIENTES
+   31950  02:40       0 SIST 24/02        15130   1  88771  CHQS   807           7999257               122.75                     DET
+                                   REFER.CTE:0002308906          CAUSA: FONDOS INSUFICIENTES
+   31951  02:40       0 SIST 24/02        15130   1  88772  CHQS   807           7999257                51.44                     DET
+                                   REFER.CTE:0002308906          CAUSA: FONDOS INSUFICIENTES
+   31952  02:40       0 SIST 24/02        15130   1  88773  CHQS   807           7999257                46.45                     DET
+                                   REFER.CTE:0002308906          CAUSA: FONDOS INSUFICIENTES
+X
+ S274-P121-MOVSRECH-001               CBM Banco S.A.      -SISTEMAS DE ENTREGA                                           HOJA:   3
+ FECHA-PROCESO: 24/02/2025                         PAGOS POR MEDIOS MAGNETICOS
+ HORA-PROCESO : 12:05:05                        342 TARJETAS DE CREDITO
+ FECHA-VERSION: 15/02/2014                     OPERACIONES RECHAZADAS EL 24/02/2025   CAJA: 34     MONEDA: M.N.
+
+  NUMERO  HORA   AUTORI      FECHA                   NUM.   <-----DATOS DE CUENTA------>  <---------------IMPORTE---------------> TIP
+  AUTORI  APLI   DESTIN ORIG APLI. NO. CTE/SIST SEC  PAGO   TIPO  SUC.     C U E N T A         C A R G O           A B O N O      MOV
+  ------  -----  ------ ---- ----- ------------ --- ------  ----  ----  ----------------  ------------------- ------------------- ---
+   31954  02:40       0 SIST 24/02        15130   1  88775  CHQS   807           7999257                 6.14                     DET
+                                   REFER.CTE:0002308906          CAUSA: FONDOS INSUFICIENTES
+   32148  02:40       0 SIST 24/02        15130   1  89117  CHQS   109            199966                                15,089.00 DET
+                                   REFER.CTE:0002378008          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   32149  02:40       0 SIST 24/02        15130   1  89120  CHQS   109            199966               132.50                     DET
+                                   REFER.CTE:0002378008          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   32150  02:40       0 SIST 24/02        15130   1  89121  CHQS   109            199966                21.21                     DET
+                                   REFER.CTE:0002378008          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   32151  02:40       0 SIST 24/02        15130   1  89122  CHQS   109            199966                14.90                     DET
+                                   REFER.CTE:0002378008          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   32152  02:40       0 SIST 24/02        15130   1  89123  CHQS   109            199966                 2.38                     DET
+                                   REFER.CTE:0002378008          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   33149  02:40       0 SIST 24/02        15130   1  91107  CHQS   109            199966                 7.13                     DET
+                                   REFER.CTE:0005646435          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   33150  02:40       0 SIST 24/02        15130   1  91108  CHQS   109            199966                 1.14                     DET
+                                   REFER.CTE:0005646435          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   33151  02:40       0 SIST 24/02        15130   1  91109  CHQS   109            199966                10.83                     DET
+                                   REFER.CTE:0005646435          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   33152  02:40       0 SIST 24/02        15130   1  91110  CHQS   109            199966                 1.73                     DET
+                                   REFER.CTE:0005646435          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   33164  02:40       0 SIST 24/02        15130   1  91122  CHQS   694           8139659               395.46                     DET
+                                   REFER.CTE:0006336655          CAUSA: FONDOS INSUFICIENTES
+   33293  02:40       0 SIST 24/02        15130   1  91286  CHQS  4699             28184                22.04                     DET
+                                   REFER.CTE:0007447059          CAUSA: FONDOS INSUFICIENTES
+   33424  02:40       0 SIST 24/02        15130   1  91498  CHQS   870            536239                70.89                     DET
+                                   REFER.CTE:0008407223          CAUSA: FONDOS INSUFICIENTES
+   33446  02:40       0 SIST 24/02        15130   1  91537  CHQS   241           7856814               183.86                     DET
+                                   REFER.CTE:0008741373          CAUSA: FONDOS INSUFICIENTES
+   34825  02:40       0 SIST 24/02        15130   1  94385  CHQS   694           8115164                45.29                     DET
+                                   REFER.CTE:0001038074          CAUSA: FONDOS INSUFICIENTES
+   34826  02:40       0 SIST 24/02        15130   1  94387  CHQS   694           8115164                61.81                     DET
+                                   REFER.CTE:0001038074          CAUSA: FONDOS INSUFICIENTES
+   37117  02:40       0 SIST 24/02        15130   1  97953  CHQS    23            736006                                 4,375.00 DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37118  02:40       0 SIST 24/02        15130   1  97954  CHQS    23            736006                77.88                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37119  02:40       0 SIST 24/02        15130   1  97955  CHQS    23            736006                12.46                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37120  02:40       0 SIST 24/02        15130   1  97956  CHQS    23            736006               558.25                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37121  02:40       0 SIST 24/02        15130   1  97957  CHQS    23            736006                89.32                     DET
+                                   REFER.CTE:0001115912          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37122  02:40       0 SIST 24/02        15130   1  97958  CHQS    23            734003                                 7,457.00 DET
+                                   REFER.CTE:0001115918          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37123  02:40       0 SIST 24/02        15130   1  97959  CHQS    23            734003               132.73                     DET
+                                   REFER.CTE:0001115918          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37124  02:40       0 SIST 24/02        15130   1  97960  CHQS    23            734003                21.24                     DET
+                                   REFER.CTE:0001115918          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37125  02:40       0 SIST 24/02        15130   1  97961  CHQS    23            735018                                11,138.00 DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+   37126  02:40       0 SIST 24/02        15130   1  97962  CHQS    23            735018               131.27                     DET
+                                   REFER.CTE:0001115920          CAUSA: VERIFIQUE, CUENTA O CONTRATO NO EXISTE
+X

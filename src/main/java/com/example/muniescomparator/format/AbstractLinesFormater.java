@@ -1,5 +1,6 @@
 package com.example.muniescomparator.format;
 
+import com.example.muniescomparator.file.FileWriter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
@@ -9,11 +10,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 @Slf4j
 public abstract class AbstractLinesFormater implements Formater {
+
+    private final FileWriter fileWriter;
+
+    public AbstractLinesFormater(FileWriter fileWriter) {
+        this.fileWriter = fileWriter;
+    }
 
     @Override
     public String format(String input, String output) throws Exception {
@@ -35,8 +43,10 @@ public abstract class AbstractLinesFormater implements Formater {
 
     private String process(List<String> lines, String output) throws Exception {
         log.debug("{} Lines to format:", lines.size());
-        return convert(lines, output);
+        Map<Integer, List<String>> result = getFormatedLines(lines);
+        return fileWriter.write(output, result);
     }
 
-    public abstract String convert(List<String> input, String output) throws Exception;
+    public abstract Map<Integer, List<String>> getFormatedLines(List<String> input) throws Exception;
+
 }

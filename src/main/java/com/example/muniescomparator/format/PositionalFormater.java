@@ -1,27 +1,34 @@
 package com.example.muniescomparator.format;
 
+import com.example.muniescomparator.file.FileWriter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PositionsFormater extends AbstractLinesFormater{
+public class PositionalFormater extends AbstractLinesFormater{
 
     private final List<Integer> positions;
+    private final FileWriter writer;
 
-    public PositionsFormater(String positions) {
+    public PositionalFormater(String positions, FileWriter writer) {
+        super(writer);
         this.positions = new ArrayList<>();
+        this.writer = writer;
         for (String pos : positions.split(",")) {
             this.positions.add(Integer.parseInt(pos.trim()));
         }
     }
 
-    public PositionsFormater(List<Integer> positions) {
+    public PositionalFormater(List<Integer> positions, FileWriter writer) {
+        super(writer);
         this.positions = positions;
+        this.writer = writer;
     }
 
     @Override
-    public String convert(List<String> input, String output) throws Exception {
+    public Map<Integer, List<String>> getFormatedLines(List<String> input) throws Exception {
         Map<Integer, List<String>> rows = new HashMap<>();
         for(String line : input) {
             int init, end = 0;
@@ -37,7 +44,7 @@ public class PositionsFormater extends AbstractLinesFormater{
             }
             rows.put(rows.size(), row);
         }
-        return SimpleFileWriterUtils.writeCsv(output, rows);
+        return rows;
     }
 
     @Override
