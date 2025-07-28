@@ -45,6 +45,10 @@ public class FormateadorController {
                 break;
             case S274:
                 convertedFile = new S274Formater(cvsFileWriter).format(stream, output);
+                break;
+            case POSITIONS:
+                convertedFile = new PositionalFormater(positions, cvsFileWriter).format(stream, output);
+                break;
         }
         Path path = Paths.get("/tmp/"+ convertedFile );
         Resource resource = new InputStreamResource(Files.newInputStream(path));
